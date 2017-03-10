@@ -8498,6 +8498,34 @@ var _user$project$Translations$shareYourExperiance = F2(
 var _user$project$Translations$Fr = {ctor: 'Fr'};
 var _user$project$Translations$Es = {ctor: 'Es'};
 var _user$project$Translations$En = {ctor: 'En'};
+var _user$project$Main$styleVerticalCenter = _elm_lang$html$Html_Attributes$style(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'top', _1: '50%'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'left', _1: '50%'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'transform', _1: 'translate(-50%,-50%)'},
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _user$project$Main$styleFullScreen = _elm_lang$html$Html_Attributes$style(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'height', _1: '100vh'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'position', _1: 'relitive'},
+			_1: {ctor: '[]'}
+		}
+	});
 var _user$project$Main$buttonStyle = function (site) {
 	var transition = {ctor: '_Tuple2', _0: 'transition', _1: 'background-color 0.4s'};
 	var textColor = {ctor: '_Tuple2', _0: 'color', _1: 'white'};
@@ -8605,7 +8633,7 @@ var _user$project$Main$reviewButton = F2(
 				_0: _user$project$Main$buttonStyle(page),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('white p2 m2 border rounded white bg-blue text-decoration-none'),
+					_0: _elm_lang$html$Html_Attributes$class('white p2 my2 border rounded white bg-blue text-decoration-none'),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$html$Html_Attributes$href(url),
@@ -8747,7 +8775,11 @@ var _user$project$Main$view = function (model) {
 	var url = _p6._1;
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$Main$styleFullScreen,
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: _krisajenkins$elm_cdn$CDN$bass.css,
@@ -8760,8 +8792,12 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('center max-width-1 mx-auto'),
-							_1: {ctor: '[]'}
+							_0: _elm_lang$html$Html_Attributes$class('center'),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Main$styleVerticalCenter,
+								_1: {ctor: '[]'}
+							}
 						},
 						{
 							ctor: '::',

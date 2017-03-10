@@ -145,16 +145,34 @@ buttonStyle site =
                 style [ textColor, transition, ( "background-color", "gray" ) ]
 
 
+styleFullScreen : Attribute msg
+styleFullScreen =
+    style
+        [ ( "height", "100vh" )
+        , ( "position", "relitive" )
+        ]
+
+
+styleVerticalCenter : Attribute msg
+styleVerticalCenter =
+    style
+        [ ( "position", "absolute" )
+        , ( "top", "50%" )
+        , ( "left", "50%" )
+        , ( "transform", "translate(-50%,-50%)" )
+        ]
+
+
 view : Model -> Html Msg
 view model =
     let
         ( page, url ) =
             (ZipList.current model.reviewPages)
     in
-        div []
+        div [ styleFullScreen ]
             [ bass.css
             , viewBack model
-            , div [ class "center max-width-1 mx-auto" ]
+            , div [ class "center", styleVerticalCenter ]
                 [ p [ class "h2" ]
                     [ text <| Translations.shareYourExperiance model.language model.buisnessName
                     ]
@@ -174,7 +192,7 @@ reviewButton url page =
     in
         a
             [ buttonStyle page
-            , class "white p2 m2 border rounded white bg-blue text-decoration-none"
+            , class "white p2 my2 border rounded white bg-blue text-decoration-none"
             , href url
             ]
             [ text <| "leave a Review on " ++ pageName ]
