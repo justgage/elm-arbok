@@ -8474,10 +8474,33 @@ var _wernerdegroot$listzipper$List_Zipper$last = function (_p28) {
 			{ctor: '[]'});
 	}
 };
+var _user$project$Translations$leaveAReview = F2(
+	function (translation, site) {
+		var _p0 = translation;
+		switch (_p0.ctor) {
+			case 'En':
+				return A2(_elm_lang$core$Basics_ops['++'], 'Leave a Review on ', site);
+			case 'Es':
+				return A2(_elm_lang$core$Basics_ops['++'], 'Deja un comentario sobre ', site);
+			default:
+				return A2(_elm_lang$core$Basics_ops['++'], 'Laisser un avis sur ', site);
+		}
+	});
+var _user$project$Translations$otherSite = function (translation) {
+	var _p1 = translation;
+	switch (_p1.ctor) {
+		case 'En':
+			return 'Other site';
+		case 'Es':
+			return 'Otro sitio';
+		default:
+			return 'Autre site';
+	}
+};
 var _user$project$Translations$shareYourExperiance = F2(
 	function (language, buisnessName) {
-		var _p0 = language;
-		switch (_p0.ctor) {
+		var _p2 = language;
+		switch (_p2.ctor) {
 			case 'En':
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
@@ -8623,8 +8646,8 @@ var _user$project$Main$reviewWebsiteToString = function (reviewWebsite) {
 			return 'Other';
 	}
 };
-var _user$project$Main$reviewButton = F2(
-	function (url, page) {
+var _user$project$Main$reviewButton = F3(
+	function (language, url, page) {
 		var pageName = _user$project$Main$reviewWebsiteToString(page);
 		return A2(
 			_elm_lang$html$Html$a,
@@ -8644,7 +8667,7 @@ var _user$project$Main$reviewButton = F2(
 			{
 				ctor: '::',
 				_0: _elm_lang$html$Html$text(
-					A2(_elm_lang$core$Basics_ops['++'], 'leave a Review on ', pageName)),
+					A2(_user$project$Translations$leaveAReview, language, pageName)),
 				_1: {ctor: '[]'}
 			});
 	});
@@ -8747,7 +8770,7 @@ var _user$project$Main$viewNext = function (model) {
 	var message = function () {
 		var _p5 = _wernerdegroot$listzipper$List_Zipper$next(model.reviewPages);
 		if (_p5.ctor === 'Just') {
-			return 'other site';
+			return _user$project$Translations$otherSite(model.language);
 		} else {
 			return '';
 		}
@@ -8816,7 +8839,7 @@ var _user$project$Main$view = function (model) {
 								}),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$reviewButton, url, page),
+								_0: A3(_user$project$Main$reviewButton, model.language, url, page),
 								_1: {
 									ctor: '::',
 									_0: A2(

@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class, href, selected, style)
 import Html.Events exposing (onClick)
 import List.Zipper as ZipList
-import Translations
+import Translations exposing (Language)
 
 
 type alias Url =
@@ -31,7 +31,7 @@ type alias SiteList =
 type alias Model =
     { buisnessName : BuisnessName
     , reviewPages : SiteList
-    , language : Translations.Translation
+    , language : Translations.Language
     }
 
 
@@ -176,7 +176,7 @@ view model =
                 [ p [ class "h2" ]
                     [ text <| Translations.shareYourExperiance model.language model.buisnessName
                     ]
-                , reviewButton url page
+                , reviewButton model.language url page
                 , div [ class "p3" ]
                     [ viewNext model
                     ]
@@ -184,8 +184,8 @@ view model =
             ]
 
 
-reviewButton : Url -> SiteName -> Html msg
-reviewButton url page =
+reviewButton : Language -> Url -> SiteName -> Html msg
+reviewButton language url page =
     let
         pageName =
             reviewWebsiteToString page
@@ -195,7 +195,7 @@ reviewButton url page =
             , class "white p2 my2 border rounded white bg-blue text-decoration-none"
             , href url
             ]
-            [ text <| "leave a Review on " ++ pageName ]
+            [ text <| Translations.leaveAReview language pageName ]
 
 
 viewNext : Model -> Html Msg
@@ -204,7 +204,7 @@ viewNext model =
         message =
             case ZipList.next model.reviewPages of
                 Just _ ->
-                    "other site"
+                    Translations.otherSite model.language
 
                 Nothing ->
                     ""
