@@ -8521,6 +8521,38 @@ var _user$project$Translations$shareYourExperiance = F2(
 var _user$project$Translations$Fr = {ctor: 'Fr'};
 var _user$project$Translations$Es = {ctor: 'Es'};
 var _user$project$Translations$En = {ctor: 'En'};
+var _user$project$Main$buttonClass = A2(
+	_elm_lang$core$String$join,
+	' ',
+	{
+		ctor: '::',
+		_0: 'p2',
+		_1: {
+			ctor: '::',
+			_0: 'my2',
+			_1: {
+				ctor: '::',
+				_0: 'border',
+				_1: {
+					ctor: '::',
+					_0: 'rounded',
+					_1: {
+						ctor: '::',
+						_0: 'white',
+						_1: {
+							ctor: '::',
+							_0: 'bg-blue',
+							_1: {
+								ctor: '::',
+								_0: 'text-decoration-none',
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 var _user$project$Main$styleVerticalCenter = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
@@ -8549,87 +8581,38 @@ var _user$project$Main$styleFullScreen = _elm_lang$html$Html_Attributes$style(
 			_1: {ctor: '[]'}
 		}
 	});
-var _user$project$Main$buttonStyle = function (site) {
+var _user$project$Main$reviewButtonStyle = function (site) {
+	var bgColor = function () {
+		var _p0 = site;
+		switch (_p0.ctor) {
+			case 'Google':
+				return {ctor: '_Tuple2', _0: 'background-color', _1: '#217df3'};
+			case 'Yelp':
+				return {ctor: '_Tuple2', _0: 'background-color', _1: 'red'};
+			case 'Facebook':
+				return {ctor: '_Tuple2', _0: 'background-color', _1: 'blue'};
+			case 'DealerRater':
+				return {ctor: '_Tuple2', _0: 'background-color', _1: '#ff7800'};
+			default:
+				return {ctor: '_Tuple2', _0: 'background-color', _1: 'gray'};
+		}
+	}();
 	var transition = {ctor: '_Tuple2', _0: 'transition', _1: 'background-color 0.4s'};
 	var textColor = {ctor: '_Tuple2', _0: 'color', _1: 'white'};
-	var _p0 = site;
-	switch (_p0.ctor) {
-		case 'Google':
-			return _elm_lang$html$Html_Attributes$style(
-				{
+	return _elm_lang$html$Html_Attributes$style(
+		{
+			ctor: '::',
+			_0: textColor,
+			_1: {
+				ctor: '::',
+				_0: transition,
+				_1: {
 					ctor: '::',
-					_0: textColor,
-					_1: {
-						ctor: '::',
-						_0: transition,
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: '#217df3'},
-							_1: {ctor: '[]'}
-						}
-					}
-				});
-		case 'Yelp':
-			return _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: textColor,
-					_1: {
-						ctor: '::',
-						_0: transition,
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'red'},
-							_1: {ctor: '[]'}
-						}
-					}
-				});
-		case 'Facebook':
-			return _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: textColor,
-					_1: {
-						ctor: '::',
-						_0: transition,
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'blue'},
-							_1: {ctor: '[]'}
-						}
-					}
-				});
-		case 'DealerRater':
-			return _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: textColor,
-					_1: {
-						ctor: '::',
-						_0: transition,
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: '#ff7800'},
-							_1: {ctor: '[]'}
-						}
-					}
-				});
-		default:
-			return _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: textColor,
-					_1: {
-						ctor: '::',
-						_0: transition,
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'gray'},
-							_1: {ctor: '[]'}
-						}
-					}
-				});
-	}
+					_0: bgColor,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
 };
 var _user$project$Main$reviewWebsiteToString = function (reviewWebsite) {
 	var _p1 = reviewWebsite;
@@ -8653,10 +8636,10 @@ var _user$project$Main$reviewButton = F3(
 			_elm_lang$html$Html$a,
 			{
 				ctor: '::',
-				_0: _user$project$Main$buttonStyle(page),
+				_0: _user$project$Main$reviewButtonStyle(page),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('white p2 my2 border rounded white bg-blue text-decoration-none'),
+					_0: _elm_lang$html$Html_Attributes$class(_user$project$Main$buttonClass),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$html$Html_Attributes$href(url),

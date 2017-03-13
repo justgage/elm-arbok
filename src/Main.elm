@@ -119,30 +119,33 @@ viewBack model =
         a [ class "m3 left", onClick PreviousPage ] [ text message ]
 
 
-buttonStyle : SiteName -> Attribute msg
-buttonStyle site =
+reviewButtonStyle : SiteName -> Attribute msg
+reviewButtonStyle site =
     let
         textColor =
             ( "color", "white" )
 
         transition =
             ( "transition", "background-color 0.4s" )
+
+        bgColor =
+            case site of
+                Google ->
+                    ( "background-color", "#217df3" )
+
+                Yelp ->
+                    ( "background-color", "red" )
+
+                Facebook ->
+                    ( "background-color", "blue" )
+
+                DealerRater ->
+                    ( "background-color", "#ff7800" )
+
+                Other ->
+                    ( "background-color", "gray" )
     in
-        case site of
-            Google ->
-                style [ textColor, transition, ( "background-color", "#217df3" ) ]
-
-            Yelp ->
-                style [ textColor, transition, ( "background-color", "red" ) ]
-
-            Facebook ->
-                style [ textColor, transition, ( "background-color", "blue" ) ]
-
-            DealerRater ->
-                style [ textColor, transition, ( "background-color", "#ff7800" ) ]
-
-            Other ->
-                style [ textColor, transition, ( "background-color", "gray" ) ]
+        style [ textColor, transition, bgColor ]
 
 
 styleFullScreen : Attribute msg
@@ -184,6 +187,19 @@ view model =
             ]
 
 
+buttonClass : String
+buttonClass =
+    String.join " "
+        [ "p2"
+        , "my2"
+        , "border"
+        , "rounded"
+        , "white"
+        , "bg-blue"
+        , "text-decoration-none"
+        ]
+
+
 reviewButton : Language -> Url -> SiteName -> Html msg
 reviewButton language url page =
     let
@@ -191,8 +207,8 @@ reviewButton language url page =
             reviewWebsiteToString page
     in
         a
-            [ buttonStyle page
-            , class "white p2 my2 border rounded white bg-blue text-decoration-none"
+            [ reviewButtonStyle page
+            , class buttonClass
             , href url
             ]
             [ text <| Translations.leaveAReview language pageName ]
